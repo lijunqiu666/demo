@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!--namespace指定与对应接口路径-->
+<!--id与接口方法名一直-->
+<!--parameterType与接口方法参数类型一致-->
+<!--占位符#{name}相当于user.name-->
+
+
+<mapper namespace="edu.whut.dao.UserDao">
+
+    <!--    insert、delete方法不能有返回值，原因是默认返回是影响行数int，可直接使用返回值-->
+    <insert id="save" parameterType="edu.whut.bean.User">
+        insert into user(name, password, age)
+        VALUES (#{name}, #{password}, #{age})
+    </insert>
+
+
+    <update id="update" parameterType="edu.whut.bean.User">
+        update user
+        set name=#{name},
+            password=#{password},
+            age=#{age}
+        where id = #{id}
+    </update>
+
+
+    <delete id="deleteUser" parameterType="java.lang.String">
+        delete
+        from user
+        where name = #{username}
+    </delete>
+
+    <select id="findAll" resultType="edu.whut.bean.User">
+        select *
+        from user
+    </select>
+
+    <select id="findById" resultType="edu.whut.bean.User" parameterType="int">
+        select *
+        from user
+        where id = #{id}
+    </select>
+
+</mapper>
