@@ -39,7 +39,7 @@ public class Test01 {
         System.out.println(users);
         System.out.println(user1);
 
-//测验
+//测验vv
         sqlSession.commit();
     }
 
